@@ -4,6 +4,7 @@ import { fetchAllProduct, fetchProductsByFilters } from './productAPI';
 const initialState = {
   products: [],
   status: 'idle',
+  totalItems:0
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -22,8 +23,8 @@ export const fetchAllProductAsync = createAsyncThunk(
 
 export const fetchProductsByFiltersAsync = createAsyncThunk(
   'product/fetchProductsByFilters',
-  async ({filter,sort}) => {
-    const response = await fetchProductsByFilters({filter, sort});
+  async ({filter,sort,pagination}) => {
+    const response = await fetchProductsByFilters({filter, sort,pagination});
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
@@ -65,7 +66,8 @@ export const productSlice = createSlice({
       })
       .addCase(fetchProductsByFiltersAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.products = action.payload;
+        state.products = action.payload.products;
+        state.totalItems = action.payload.totalItems;
       })
       ;
   },
