@@ -1,10 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchAllProduct, fetchProductsByFilters } from './productAPI';
+import { fetchAllProduct, fetchProductsByFilters, fetchCategories,fetchBrands } from './productAPI';
 
 const initialState = {
   products: [],
   status: 'idle',
-  totalItems:0
+  totalItems:0,
+  brands : [],
+  categories : [],
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -29,6 +31,25 @@ export const fetchProductsByFiltersAsync = createAsyncThunk(
     return response.data;
   }
 );
+
+export const fetchBrandsAsync = createAsyncThunk(
+  'product/fetchBrands',
+  async () => {
+    const response = await fetchProductsByFilters();
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
+
+export const fetchCategoriesAsync = createAsyncThunk(
+  'product/fetchCategories',
+  async () => {
+    const response = await fetchProductsByFilters();
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
+
 
 export const productSlice = createSlice({
   name: 'product',
@@ -61,6 +82,20 @@ export const productSlice = createSlice({
         state.status = 'idle';
         state.products = action.payload;
       })
+      .addCase(fetchBrandsAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchBrandsAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.brands = action.payload;
+      })
+      .addCase(fetchCategoriesAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchCategoriesAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.categories = action.payload;
+      })
       .addCase(fetchProductsByFiltersAsync.pending, (state) => {
         state.status = 'loading';
       })
@@ -88,5 +123,8 @@ export const { increment, decrement, incrementByAmount } = productSlice.actions;
 //     dispatch(incrementByAmount(amount));
 //   }
 // };
+
+export const selectBrands = (state) => state.product.brands;
+export const selectCategories = (state) => state.product.categories;
 
 export default productSlice.reducer;
