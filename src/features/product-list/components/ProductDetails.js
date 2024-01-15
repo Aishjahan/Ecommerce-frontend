@@ -45,7 +45,9 @@ export default function ProductDetails() {
 
   const handleCart = (e) =>{
     e.preventDefault();
-   dispatch(addToCartAsync({...product,quantity:1,user:user.id}))
+    const newItem = {...product,quantity:1,user:user.id};
+    delete newItem['id'];
+   dispatch(addToCartAsync(newItem));
   }
 
   useEffect(()=>{
@@ -89,7 +91,7 @@ export default function ProductDetails() {
           <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
             <img
               src={product.images[0]}
-              alt={product.images[0].title}
+              alt={product.title}
               className="h-full w-full object-cover object-center"
             />
           </div>
@@ -97,14 +99,14 @@ export default function ProductDetails() {
             <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
               <img
                 src={product.images[1]}
-                alt={product.images[1].title}
+                alt={product.title}
                 className="h-full w-full object-cover object-center"
               />
             </div>
             <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
               <img
                 src={product.images[2]}
-                alt={product.images[2].title}
+                alt={product.title}
                 className="h-full w-full object-cover object-center"
               />
             </div>
@@ -112,7 +114,7 @@ export default function ProductDetails() {
           <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
             <img
               src={product.images[3]}
-              alt={product.images[3].title}
+              alt={product.title}
               className="h-full w-full object-cover object-center"
             />
           </div>
