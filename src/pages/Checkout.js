@@ -62,6 +62,7 @@ function Checkout() {
   };
 
   const handleAddress = (e) => {
+    console.log(e.target.value);
     setSelectedAddress(user.addresses[e.target.value]);
   };
 
@@ -70,17 +71,27 @@ function Checkout() {
   };
 
   const handleOrder = (e) => {
-    const order = {
-      items,
-      totalAmount,
-      totalItems,
-      user,
-      paymentMethod,
-      selectedAddress,
-      status: 'pending'
-    };
-    dispatch(createOrderAsync(order));
+    if (selectedAddress && paymentMethod) {
+      const order = {
+        items,
+        totalAmount,
+        totalItems,
+        user,
+        paymentMethod,
+        selectedAddress,
+        status: 'pending' // other status can be delivered, received.
+      };
+      dispatch(createOrderAsync(order));
+      // need to redirect from here to a new page of order success.
+    } else {
+      // TODO : we can use proper messaging popup here
+      alert('Enter Address and Payment method')
+    }
+    //TODO : Redirect to order-success page
+    //TODO : clear cart after order
+    //TODO : on server change the stock number of items
   };
+
 
   return (
     <>
@@ -266,7 +277,7 @@ function Checkout() {
                             onChange={handleAddress}
                             name="address"
                             type="radio"
-                            value={address}
+                            value={index}
                             className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                           />
                           <div className="min-w-0 flex-auto">
