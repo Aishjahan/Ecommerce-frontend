@@ -7,8 +7,11 @@ import {
 } from "../features/cart/cartSlice";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { selectLoggedInUser, updateUserAsync } from "../features/auth/authSlice";
-import { createOrderAsync } from "../features/order/orderSlice";
+import {
+  selectLoggedInUser,
+  updateUserAsync,
+} from "../features/auth/authSlice";
+import { createOrderAsync, selectCurrentOrder } from "../features/order/orderSlice";
 
 const addresses = [
   {
@@ -38,16 +41,17 @@ function Checkout() {
   } = useForm();
 
   const dispatch = useDispatch();
-  const user = useSelector(selectLoggedInUser)
+  const user = useSelector(selectLoggedInUser);
   const items = useSelector(selectItems);
+  const currentOrder = useSelector(selectCurrentOrder)
   const totalAmount = items.reduce(
     (amount, item) => item.price * item.quantity + amount,
     0
   );
   const totalItems = items.reduce((total, item) => item.quantity + total, 0);
   const [open, setOpen] = useState(true);
-  const [selectedAddress,setSelectedAddress] = useState(null);
-  const [paymentMethod,setPaymentMethod] = useState('cash');
+  const [selectedAddress, setSelectedAddress] = useState(null);
+  const [paymentMethod, setPaymentMethod] = useState("cash");
 
   const handleQuantity = (e, item) => {
     dispatch(updateCartAsync({ ...item, quantity: +e.target.value }));
@@ -57,22 +61,31 @@ function Checkout() {
     dispatch(deleteItemFromCartAsync(id));
   };
 
-  const handleAddress = (e) =>{
-    setSelectedAddress(user.addresses[e.target.value])
-  }
+  const handleAddress = (e) => {
+    setSelectedAddress(user.addresses[e.target.value]);
+  };
 
-  const handlePayment = (e) =>{
-    setPaymentMethod(e.target.value)
-  }
+  const handlePayment = (e) => {
+    setPaymentMethod(e.target.value);
+  };
 
-  const handleOrder = (e) =>{
-    const order = {items, totalAmount, totalItems, user, paymentMethod, selectedAddress}
+  const handleOrder = (e) => {
+    const order = {
+      items,
+      totalAmount,
+      totalItems,
+      user,
+      paymentMethod,
+      selectedAddress,
+      status: 'pending'
+    };
     dispatch(createOrderAsync(order));
-  }
+  };
 
   return (
     <>
       {!items.length && <Navigate to="/" replace={true}></Navigate>}
+      {currentOrder && <Navigate to={`/order-success/${currentOrder.id}`} replace={true}></Navigate>}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
           <div className="lg:col-span-3">
@@ -81,7 +94,10 @@ function Checkout() {
               noValidate
               onSubmit={handleSubmit((data) => {
                 dispatch(
-                  updateUserAsync({ ...user,addresses:[...user.addresses,data] })
+                  updateUserAsync({
+                    ...user,
+                    addresses: [...user.addresses, data],
+                  })
                 );
                 reset();
               })}
@@ -135,7 +151,7 @@ function Checkout() {
                         Phone
                       </label>
                       <div className="mt-2">
-                      <input
+                        <input
                           id="phone"
                           {...register("phone", {
                             required: "phone is required",
@@ -240,7 +256,7 @@ function Checkout() {
                   </p>
 
                   <ul role="list" className="divide-y divide-gray-100">
-                    {user.addresses.map((address,index) => (
+                    {user.addresses.map((address, index) => (
                       <li
                         key={index}
                         className="flex justify-between gap-x-6 px-5 py-5 border-solid border-2 border-gray-200"
@@ -291,8 +307,8 @@ function Checkout() {
                             id="cash"
                             name="payments"
                             onChange={handlePayment}
-                            checked={paymentMethod === 'cash'}
-                            value='cash'
+                            checked={paymentMethod === "cash"}
+                            value="cash"
                             type="radio"
                             className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                           />
@@ -308,9 +324,9 @@ function Checkout() {
                             id="card"
                             onChange={handlePayment}
                             name="payments"
-                            checked={paymentMethod === 'card'}
+                            checked={paymentMethod === "card"}
                             type="radio"
-                            value='card'
+                            value="card"
                             className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                           />
                           <label
@@ -408,7 +424,7 @@ function Checkout() {
                 </p>
                 <div className="mt-6">
                   <div
-                  onClick={handleOrder}
+                    onClick={handleOrder}
                     className="flex cursor-pointer items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                   >
                     Order Now
