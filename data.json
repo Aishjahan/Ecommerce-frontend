@@ -2340,13 +2340,13 @@
       "password": "Aish1234",
       "addresses": [
         {
-          "name": "Aishjahan",
-          "email": "aishjahankhan7373@gmail.com",
-          "phone": "06307373813",
-          "street": "North City",
+          "name": "Jack",
+          "email": "jack@gmail.com",
           "city": "Lucknow",
           "state": "Uttar Pradesh",
-          "pinCode": "226016"
+          "pinCode": "226016",
+          "street": "South City",
+          "phone": "64698462"
         }
       ],
       "id": 1
@@ -2468,6 +2468,107 @@
       },
       "status": "pending",
       "id": 1
+    },
+    {
+      "items": [
+        {
+          "title": "Women Shoes",
+          "description": "2020 New Arrivals Genuine Leather Fashion Trend Platform Summer Women Shoes",
+          "price": 36,
+          "discountPercentage": 16.87,
+          "rating": 4.33,
+          "stock": 46,
+          "brand": "Arrivals Genuine",
+          "category": "womens-shoes",
+          "thumbnail": "https://i.dummyjson.com/data/products/50/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/50/1.jpeg",
+            "https://i.dummyjson.com/data/products/50/2.jpg",
+            "https://i.dummyjson.com/data/products/50/3.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 1
+        },
+        {
+          "title": "Chappals & Shoe Ladies Metallic",
+          "description": "Womens Chappals & Shoe Ladies Metallic Tong Thong Sandal Flat Summer 2020 Maasai Sandals",
+          "price": 23,
+          "discountPercentage": 2.62,
+          "rating": 4.72,
+          "stock": 107,
+          "brand": "Maasai Sandals",
+          "category": "womens-shoes",
+          "thumbnail": "https://i.dummyjson.com/data/products/49/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/49/1.jpg",
+            "https://i.dummyjson.com/data/products/49/2.jpg",
+            "https://i.dummyjson.com/data/products/49/3.webp",
+            "https://i.dummyjson.com/data/products/49/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 2
+        },
+        {
+          "title": "LouisWill Men Sunglasses",
+          "description": "LouisWill Men Sunglasses Polarized Sunglasses UV400 Sunglasses Day Night Dual Use Safety Driving Night Vision Eyewear AL-MG Frame Sun Glasses with Free Box for Drivers",
+          "price": 50,
+          "discountPercentage": 11.27,
+          "rating": 4.98,
+          "stock": 92,
+          "brand": "LouisWill",
+          "category": "sunglasses",
+          "thumbnail": "https://i.dummyjson.com/data/products/85/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/85/1.jpg",
+            "https://i.dummyjson.com/data/products/85/2.jpg",
+            "https://i.dummyjson.com/data/products/85/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 3
+        }
+      ],
+      "totalAmount": 109,
+      "totalItems": 3,
+      "user": {
+        "email": "aishjahankhan7376@gmail.com",
+        "password": "Aish1234",
+        "addresses": [
+          {
+            "name": "Aishjahan",
+            "email": "aishjahankhan7373@gmail.com",
+            "phone": "06307373813",
+            "street": "North City",
+            "city": "Lucknow",
+            "state": "Uttar Pradesh",
+            "pinCode": "226016"
+          },
+          {
+            "name": "Ayaan",
+            "email": "ayaan@gmail.com",
+            "phone": "6749874823",
+            "street": "Romeo lane",
+            "city": "Delhi",
+            "state": "Maharashtra",
+            "pinCode": "434382"
+          }
+        ],
+        "id": 1
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Ayaan",
+        "email": "ayaan@gmail.com",
+        "phone": "6749874823",
+        "street": "Romeo lane",
+        "city": "Delhi",
+        "state": "Maharashtra",
+        "pinCode": "434382"
+      },
+      "status": "pending",
+      "id": 2
     }
   ]
 }
