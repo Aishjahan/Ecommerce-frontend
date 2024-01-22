@@ -1,11 +1,11 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { createUser,checkUser } from './authAPI';
-import { updateUser } from '../user/userAPI';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createUser, checkUser, signOut } from "./authAPI";
+import { updateUser } from "../user/userAPI";
 
 const initialState = {
   loggedInUser: null,
-  status: 'idle',
-  error:null,
+  status: "idle",
+  error: null,
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -14,7 +14,7 @@ const initialState = {
 // code can then be executed and other actions can be dispatched. Thunks are
 // typically used to make async requests.
 export const createUserAsync = createAsyncThunk(
-  'user/createUser',
+  "user/createUser",
   async (userData) => {
     const response = await createUser(userData);
     // The value we return becomes the `fulfilled` action payload
@@ -23,7 +23,7 @@ export const createUserAsync = createAsyncThunk(
 );
 
 export const updateUserAsync = createAsyncThunk(
-  'user/updateUser',
+  "user/updateUser",
   async (update) => {
     const response = await updateUser(update);
     // The value we return becomes the `fulfilled` action payload
@@ -32,7 +32,7 @@ export const updateUserAsync = createAsyncThunk(
 );
 
 export const checkUserAsync = createAsyncThunk(
-  'user/checkUser',
+  "user/checkUser",
   async (loginInfo) => {
     const response = await checkUser(loginInfo);
     // The value we return becomes the `fulfilled` action payload
@@ -40,8 +40,17 @@ export const checkUserAsync = createAsyncThunk(
   }
 );
 
+export const signOutAsync = createAsyncThunk(
+  "user/signOut",
+  async (userId) => {
+    const response = await signOut(userId);
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
+
 export const counterSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
@@ -61,35 +70,42 @@ export const counterSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(createUserAsync.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(createUserAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
+        state.status = "idle";
         state.loggedInUser = action.payload;
       })
       .addCase(checkUserAsync.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(checkUserAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
+        state.status = "idle";
         state.loggedInUser = action.payload;
       })
       .addCase(checkUserAsync.rejected, (state, action) => {
-        state.status = 'idle';
+        state.status = "idle";
         state.error = action.error;
       })
       .addCase(updateUserAsync.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(updateUserAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
+        state.status = "idle";
         state.loggedInUser = action.payload;
+      })
+      .addCase(signOutAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(signOutAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.loggedInUser = null;
       });
   },
 });
 
-export const selectLoggedInUser = (state) => state.auth .loggedInUser
-export const selectError = (state) => state.auth.error
+export const selectLoggedInUser = (state) => state.auth.loggedInUser;
+export const selectError = (state) => state.auth.error;
 
 export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 
