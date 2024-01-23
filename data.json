@@ -2338,6 +2338,7 @@
     {
       "email": "aishjahankhan7376@gmail.com",
       "password": "Aish1234",
+      "role": "user",
       "addresses": [
         {
           "name": "Jack",
@@ -2350,6 +2351,13 @@
         }
       ],
       "id": 1
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "Admin@1234",
+      "addresses": [],
+      "role": "admin",
+      "id": 2
     }
   ],
   "cart": [],

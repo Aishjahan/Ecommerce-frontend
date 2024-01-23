@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import './App.css';
-import Home from './pages/Home';
-import LoginPage from './pages/LoginPage';
-import SignupPage from './pages/SignupPage';
+import React, { useEffect } from "react";
+import "./App.css";
+import Home from "./pages/Home";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
 
 import { createRoot } from "react-dom/client";
 import {
@@ -11,82 +11,125 @@ import {
   Route,
   Link,
 } from "react-router-dom";
-import CartPage from './pages/CartPage';
-import Checkout from './pages/Checkout';
-import ProductDetailPage from '../src/pages/ProductDetailPage'
-import Protected from './features/auth/components/Protected';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchItemsByUserIdAsync } from './features/cart/cartSlice';
-import { selectLoggedInUser } from './features/auth/authSlice';
-import PageNotFound from './pages/404';
-import OrderSuccessPage from './pages/OrderSuccessPage';
-import UserOrderPage from './pages/UserOrderPage';
-import UserProfilePage from './pages/UserProfilePage';
-import { fetchLoggedInUserAsync } from './features/user/userSlice';
-import Logout from './features/auth/components/Logout';
-import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import CartPage from "./pages/CartPage";
+import Checkout from "./pages/Checkout";
+import ProductDetailPage from "../src/pages/ProductDetailPage";
+import Protected from "./features/auth/components/Protected";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchItemsByUserIdAsync } from "./features/cart/cartSlice";
+import { selectLoggedInUser } from "./features/auth/authSlice";
+import PageNotFound from "./pages/404";
+import OrderSuccessPage from "./pages/OrderSuccessPage";
+import UserOrderPage from "./pages/UserOrderPage";
+import UserProfilePage from "./pages/UserProfilePage";
+import { fetchLoggedInUserAsync } from "./features/user/userSlice";
+import Logout from "./features/auth/components/Logout";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import AdminHome from "./pages/AdminHome";
+import ProtectedAdmin from "./features/auth/components/ProtectedAdmin";
+import AdminProductDetailPage from "./pages/AdminProductDetailPage";
+import AdminProductFormPage from "./pages/AdminProductFormPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (<Protected><Home></Home></Protected>),
+    element: (
+      <Protected>
+        <Home></Home>
+      </Protected>
+    ),
+  },
+  {
+    path: "/admin",
+    element: (
+      <ProtectedAdmin>
+        <AdminHome></AdminHome>
+      </ProtectedAdmin>
+    ),
   },
   {
     path: "/login",
-    element:<LoginPage></LoginPage> ,
+    element: <LoginPage></LoginPage>,
   },
   {
     path: "/signup",
-    element:<SignupPage></SignupPage> ,
+    element: <SignupPage></SignupPage>,
   },
   {
     path: "/cart",
-    element:<Protected><CartPage></CartPage></Protected> ,
+    element: (
+      <Protected>
+        <CartPage></CartPage>
+      </Protected>
+    ),
   },
   {
     path: "/checkout",
-    element:<Protected><Checkout></Checkout></Protected>  ,
+    element: (
+      <Protected>
+        <Checkout></Checkout>
+      </Protected>
+    ),
   },
   {
     path: "/product-detail/:id",
-    element:<Protected><ProductDetailPage></ProductDetailPage></Protected> ,
+    element: (
+      <Protected>
+        <ProductDetailPage></ProductDetailPage>
+      </Protected>
+    ),
   },
   {
-    path: "/order-success/:id",
-    element:<OrderSuccessPage></OrderSuccessPage> ,
+    path: "/admin/product-detail/:id",
+    element: (
+      <ProtectedAdmin>
+        <AdminProductDetailPage></AdminProductDetailPage>
+      </ProtectedAdmin>
+    ),
+  },
+  {
+    path: "/admin/product-form",
+    element: (
+      <ProtectedAdmin>
+        <AdminProductFormPage></AdminProductFormPage>
+      </ProtectedAdmin>
+    ),
+  },
+  {
+    path: "/o rder-success/:id",
+    element: <OrderSuccessPage></OrderSuccessPage>,
   },
   {
     path: "/orders",
-    element: <UserOrderPage></UserOrderPage> ,
+    element: <UserOrderPage></UserOrderPage>,
   },
   {
     path: "/profile",
-    element: <UserProfilePage></UserProfilePage> ,
+    element: <UserProfilePage></UserProfilePage>,
   },
   {
     path: "/logout",
-    element: <Logout></Logout> ,
+    element: <Logout></Logout>,
   },
   {
     path: "/forgot-password",
-    element: <ForgotPasswordPage></ForgotPasswordPage> ,
+    element: <ForgotPasswordPage></ForgotPasswordPage>,
   },
   {
     path: "*",
-    element:<PageNotFound></PageNotFound> ,
+    element: <PageNotFound></PageNotFound>,
   },
 ]);
 
 function App() {
-
   const dispatch = useDispatch();
   const user = useSelector(selectLoggedInUser);
-  useEffect(()=>{
-    if(user){
-      dispatch(fetchItemsByUserIdAsync(user.id))
-      dispatch(fetchLoggedInUserAsync(user.id))
+  useEffect(() => {
+    if (user) {
+      dispatch(fetchItemsByUserIdAsync(user.id));
+      dispatch(fetchLoggedInUserAsync(user.id));
     }
-  },[dispatch,user])
+  }, [dispatch, user]);
 
   return (
     <div className="App">
