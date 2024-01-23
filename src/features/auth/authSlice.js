@@ -49,7 +49,7 @@ export const signOutAsync = createAsyncThunk(
   }
 );
 
-export const counterSlice = createSlice({
+export const authSlice = createSlice({
   name: "user",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
@@ -107,7 +107,7 @@ export const counterSlice = createSlice({
 export const selectLoggedInUser = (state) => state.auth.loggedInUser;
 export const selectError = (state) => state.auth.error;
 
-export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+export const { increment, decrement, incrementByAmount } = authSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
@@ -116,4 +116,4 @@ export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
 
-export default counterSlice.reducer;
+export default authSlice.reducer;
