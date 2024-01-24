@@ -70,7 +70,6 @@ export default function ProductList() {
     dispatch(fetchCategoriesAsync());
   }, []);
 
-
   const handleFilter = (e, section, option) => {
     const newFilter = { ...filter };
     // TODO : on server it will support multiple categories
@@ -394,13 +393,13 @@ function Pagination({ page, setPage, handlePage, totalItems }) {
     <>
       <div className="flex flex-1 justify-between sm:hidden">
         <div
-          onClick={(e)=> handlePage( page > 1 ? page-1 : page)}
+          onClick={(e) => handlePage(page > 1 ? page - 1 : page)}
           className="relative inline-flex cursor-pointer items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
         >
           Previous
         </div>
         <div
-          onClick={(e)=> handlePage( page < totalPages ? page+1 : page)}
+          onClick={(e) => handlePage(page < totalPages ? page + 1 : page)}
           className="relative ml-3 cursor-pointer inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
         >
           Next
@@ -428,31 +427,29 @@ function Pagination({ page, setPage, handlePage, totalItems }) {
             aria-label="Pagination"
           >
             <div
-              onClick={(e)=> handlePage( page > 1 ? page-1 : page)}
+              onClick={(e) => handlePage(page > 1 ? page - 1 : page)}
               className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
             >
               <span className="sr-only">Previous</span>
               <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
             </div>
             {/* Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" */}
-            {Array.from({ length: totalPages }).map(
-              (el, index) => (
-                <div
-                  onClick={(e) => handlePage(index + 1)}
-                  aria-current="page"
-                  className={`relative cursor-pointer z-10 inline-flex items-center ${
-                    index + 1 === page
-                      ? "bg-indigo-600 text-white"
-                      : "text-gray-400"
-                  }  px-4 py-2 text-sm font-semibold focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
-                >
-                  {index + 1}
-                </div>
-              )
-            )}
+            {Array.from({ length: totalPages }).map((el, index) => (
+              <div
+                onClick={(e) => handlePage(index + 1)}
+                aria-current="page"
+                className={`relative cursor-pointer z-10 inline-flex items-center ${
+                  index + 1 === page
+                    ? "bg-indigo-600 text-white"
+                    : "text-gray-400"
+                }  px-4 py-2 text-sm font-semibold focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
+              >
+                {index + 1}
+              </div>
+            ))}
 
             <div
-              onClick={(e)=> handlePage( page < totalPages ? page+1 : page)}
+              onClick={(e) => handlePage(page < totalPages ? page + 1 : page)}
               className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
             >
               <span className="sr-only">Next</span>
@@ -509,6 +506,11 @@ function ProductGrid({ products }) {
                     </p>
                   </div>
                 </div>
+                {product.deleted && (
+                  <div>
+                    <p className="text-sm text-red-600">product deleted</p>
+                  </div>
+                )}
               </div>
             </Link>
           ))}
