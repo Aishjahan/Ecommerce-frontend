@@ -2341,13 +2341,13 @@
       "role": "user",
       "addresses": [
         {
-          "name": "Jack",
-          "email": "jack@gmail.com",
+          "name": "Aishjahan",
+          "email": "aishjahankhan7373@gmail.com",
+          "phone": "06307373813",
+          "street": "Norway Street",
           "city": "Lucknow",
           "state": "Uttar Pradesh",
-          "pinCode": "226016",
-          "street": "South City",
-          "phone": "64698462"
+          "pinCode": "223456"
         }
       ],
       "id": 1
@@ -2360,7 +2360,65 @@
       "id": 2
     }
   ],
-  "cart": [],
+  "cart": [
+    {
+      "title": "iPhone 9",
+      "description": "An apple mobile which is nothing like apple",
+      "price": 555,
+      "discountPercentage": 12.96,
+      "rating": 0,
+      "stock": 94,
+      "brand": "Apple",
+      "category": "smartphones",
+      "thumbnail": "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+      "images": [
+        "https://i.dummyjson.com/data/products/1/1.jpg",
+        "https://i.dummyjson.com/data/products/1/2.jpg",
+        "https://i.dummyjson.com/data/products/1/3.jpg",
+        "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
+      ],
+      "quantity": 1,
+      "user": 1,
+      "id": 1
+    },
+    {
+      "title": "Huawei P30",
+      "description": "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
+      "price": 499,
+      "discountPercentage": 10.58,
+      "rating": 4.09,
+      "stock": 32,
+      "brand": "Huawei",
+      "category": "smartphones",
+      "thumbnail": "https://i.dummyjson.com/data/products/5/thumbnail.jpg",
+      "images": [
+        "https://i.dummyjson.com/data/products/5/1.jpg",
+        "https://i.dummyjson.com/data/products/5/2.jpg",
+        "https://i.dummyjson.com/data/products/5/3.jpg"
+      ],
+      "quantity": 1,
+      "user": 1,
+      "id": 3
+    },
+    {
+      "title": "women winter clothes",
+      "description": "women winter clothes thick fleece hoodie top with sweat pantjogger women sweatsuit set joggers pants two piece pants set",
+      "price": 57,
+      "discountPercentage": 13.39,
+      "rating": 4.91,
+      "stock": 84,
+      "brand": "Top Sweater",
+      "category": "tops",
+      "thumbnail": "https://i.dummyjson.com/data/products/40/thumbnail.jpg",
+      "images": [
+        "https://i.dummyjson.com/data/products/40/1.jpg",
+        "https://i.dummyjson.com/data/products/40/2.jpg"
+      ],
+      "quantity": 1,
+      "user": 1,
+      "id": 4
+    }
+  ],
   "orders": [
     {
       "items": [
@@ -2474,7 +2532,7 @@
         "state": "Uttar Pradesh",
         "pinCode": "226016"
       },
-      "status": "pending",
+      "status": "dispatched",
       "id": 1
     },
     {
@@ -2577,6 +2635,254 @@
       },
       "status": "pending",
       "id": 2
+    },
+    {
+      "items": [
+        {
+          "title": "iPhone 9",
+          "description": "An apple mobile which is nothing like apple",
+          "price": 555,
+          "discountPercentage": 12.96,
+          "rating": 0,
+          "stock": 94,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/1/1.jpg",
+            "https://i.dummyjson.com/data/products/1/2.jpg",
+            "https://i.dummyjson.com/data/products/1/3.jpg",
+            "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 1
+        },
+        {
+          "title": "Microsoft Surface Laptop 4",
+          "description": "Style and speed. Stand out on HD video calls backed by Studio Mics. Capture ideas on the vibrant touchscreen.",
+          "price": 1499,
+          "discountPercentage": 10.23,
+          "rating": 4.43,
+          "stock": 68,
+          "brand": "Microsoft Surface",
+          "category": "laptops",
+          "thumbnail": "https://i.dummyjson.com/data/products/8/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/8/1.jpg",
+            "https://i.dummyjson.com/data/products/8/2.jpg",
+            "https://i.dummyjson.com/data/products/8/3.jpg",
+            "https://i.dummyjson.com/data/products/8/4.jpg",
+            "https://i.dummyjson.com/data/products/8/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 2
+        }
+      ],
+      "totalAmount": 2054,
+      "totalItems": 2,
+      "user": {
+        "email": "aishjahankhan7376@gmail.com",
+        "password": "Aish1234",
+        "role": "user",
+        "addresses": [
+          {
+            "name": "Aishjahan",
+            "email": "aishjahankhan7373@gmail.com",
+            "phone": "06307373813",
+            "street": "Norway Street",
+            "city": "Lucknow",
+            "state": "Uttar Pradesh",
+            "pinCode": "223456"
+          }
+        ],
+        "id": 1
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Aishjahan",
+        "email": "aishjahankhan7373@gmail.com",
+        "phone": "06307373813",
+        "street": "Norway Street",
+        "city": "Lucknow",
+        "state": "Uttar Pradesh",
+        "pinCode": "223456"
+      },
+      "status": "delivered",
+      "id": 3
+    },
+    {
+      "items": [
+        {
+          "title": "iPhone 9",
+          "description": "An apple mobile which is nothing like apple",
+          "price": 555,
+          "discountPercentage": 12.96,
+          "rating": 0,
+          "stock": 94,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/1/1.jpg",
+            "https://i.dummyjson.com/data/products/1/2.jpg",
+            "https://i.dummyjson.com/data/products/1/3.jpg",
+            "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 1
+        },
+        {
+          "title": "Microsoft Surface Laptop 4",
+          "description": "Style and speed. Stand out on HD video calls backed by Studio Mics. Capture ideas on the vibrant touchscreen.",
+          "price": 1499,
+          "discountPercentage": 10.23,
+          "rating": 4.43,
+          "stock": 68,
+          "brand": "Microsoft Surface",
+          "category": "laptops",
+          "thumbnail": "https://i.dummyjson.com/data/products/8/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/8/1.jpg",
+            "https://i.dummyjson.com/data/products/8/2.jpg",
+            "https://i.dummyjson.com/data/products/8/3.jpg",
+            "https://i.dummyjson.com/data/products/8/4.jpg",
+            "https://i.dummyjson.com/data/products/8/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 2
+        }
+      ],
+      "totalAmount": 2054,
+      "totalItems": 2,
+      "user": {
+        "email": "aishjahankhan7376@gmail.com",
+        "password": "Aish1234",
+        "role": "user",
+        "addresses": [
+          {
+            "name": "Aishjahan",
+            "email": "aishjahankhan7373@gmail.com",
+            "phone": "06307373813",
+            "street": "Norway Street",
+            "city": "Lucknow",
+            "state": "Uttar Pradesh",
+            "pinCode": "223456"
+          }
+        ],
+        "id": 1
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Aishjahan",
+        "email": "aishjahankhan7373@gmail.com",
+        "phone": "06307373813",
+        "street": "Norway Street",
+        "city": "Lucknow",
+        "state": "Uttar Pradesh",
+        "pinCode": "223456"
+      },
+      "status": "cancelled",
+      "id": 4
+    },
+    {
+      "items": [
+        {
+          "title": "iPhone 9",
+          "description": "An apple mobile which is nothing like apple",
+          "price": 555,
+          "discountPercentage": 12.96,
+          "rating": 0,
+          "stock": 94,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/1/1.jpg",
+            "https://i.dummyjson.com/data/products/1/2.jpg",
+            "https://i.dummyjson.com/data/products/1/3.jpg",
+            "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 1
+        },
+        {
+          "title": "Microsoft Surface Laptop 4",
+          "description": "Style and speed. Stand out on HD video calls backed by Studio Mics. Capture ideas on the vibrant touchscreen.",
+          "price": 1499,
+          "discountPercentage": 10.23,
+          "rating": 4.43,
+          "stock": 68,
+          "brand": "Microsoft Surface",
+          "category": "laptops",
+          "thumbnail": "https://i.dummyjson.com/data/products/8/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/8/1.jpg",
+            "https://i.dummyjson.com/data/products/8/2.jpg",
+            "https://i.dummyjson.com/data/products/8/3.jpg",
+            "https://i.dummyjson.com/data/products/8/4.jpg",
+            "https://i.dummyjson.com/data/products/8/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 2
+        },
+        {
+          "title": "HP Pavilion 15-DK1056WM",
+          "description": "HP Pavilion 15-DK1056WM Gaming Laptop 10th Gen Core i5, 8GB, 256GB SSD, GTX 1650 4GB, Windows 10",
+          "price": 1099,
+          "discountPercentage": 6.18,
+          "rating": 4.43,
+          "stock": 89,
+          "brand": "HP Pavilion",
+          "category": "laptops",
+          "thumbnail": "https://i.dummyjson.com/data/products/10/thumbnail.jpeg",
+          "images": [
+            "https://i.dummyjson.com/data/products/10/1.jpg",
+            "https://i.dummyjson.com/data/products/10/2.jpg",
+            "https://i.dummyjson.com/data/products/10/3.jpg",
+            "https://i.dummyjson.com/data/products/10/thumbnail.jpeg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 3
+        }
+      ],
+      "totalAmount": 2860,
+      "totalItems": 3,
+      "user": {
+        "email": "aishjahankhan7376@gmail.com",
+        "password": "Aish1234",
+        "role": "user",
+        "addresses": [
+          {
+            "name": "Aishjahan",
+            "email": "aishjahankhan7373@gmail.com",
+            "phone": "06307373813",
+            "street": "Norway Street",
+            "city": "Lucknow",
+            "state": "Uttar Pradesh",
+            "pinCode": "223456"
+          }
+        ],
+        "id": 1
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Aishjahan",
+        "email": "aishjahankhan7373@gmail.com",
+        "phone": "06307373813",
+        "street": "Norway Street",
+        "city": "Lucknow",
+        "state": "Uttar Pradesh",
+        "pinCode": "223456"
+      },
+      "status": "pending",
+      "id": 5
     }
   ]
 }
