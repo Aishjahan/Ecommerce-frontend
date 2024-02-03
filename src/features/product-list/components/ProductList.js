@@ -47,12 +47,12 @@ export default function ProductList() {
     {
       id: "category",
       name: "Category",
-      options: brands,
+      options: categories,
     },
     {
       id: "brands",
       name: "brands",
-      options: categories,
+      options: brands,
     },
   ];
 
