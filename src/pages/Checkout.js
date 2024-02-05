@@ -7,7 +7,7 @@ import {
 } from "../features/cart/cartSlice";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { updateUserAsync } from "../features/auth/authSlice";
+import { updateUserAsync } from "../features/user/userSlice";
 import {
   createOrderAsync,
   selectCurrentOrder,
@@ -59,7 +59,7 @@ function Checkout() {
         items,
         totalAmount,
         totalItems,
-        user,
+        user:user.id,
         paymentMethod,
         selectedAddress,
         status: "pending", // other status can be delivered, received.
