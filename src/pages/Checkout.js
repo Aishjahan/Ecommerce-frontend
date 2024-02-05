@@ -37,7 +37,7 @@ function Checkout() {
   const [paymentMethod, setPaymentMethod] = useState("cash");
 
   const handleQuantity = (e, item) => {
-    dispatch(updateCartAsync({ id:item.id, quantity: +e.target.value }));
+    dispatch(updateCartAsync({ id: item.id, quantity: +e.target.value }));
   };
 
   const handleRemove = (e, id) => {
@@ -59,7 +59,7 @@ function Checkout() {
         items,
         totalAmount,
         totalItems,
-        user:user.id,
+        user: user.id,
         paymentMethod,
         selectedAddress,
         status: "pending", // other status can be delivered, received.
@@ -363,9 +363,13 @@ function Checkout() {
                           <div>
                             <div className="flex justify-between text-base font-medium text-gray-900">
                               <h3>
-                                <a href={item.product.href}>{item.product.title}</a>
+                                <a href={item.product.href}>
+                                  {item.product.title}
+                                </a>
                               </h3>
-                              <p className="ml-4">${discountedPrice(item.product)}</p>
+                              <p className="ml-4">
+                                ${discountedPrice(item.product)}
+                              </p>
                             </div>
                             <p className="mt-1 text-sm text-gray-500">
                               {item.product.brand}

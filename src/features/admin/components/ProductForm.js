@@ -14,8 +14,6 @@ import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 
-
-
 function ProductForm() {
   const brands = useSelector(selectBrands);
   const categories = useSelector(selectCategories);
@@ -31,15 +29,15 @@ function ProductForm() {
   const selectedProduct = useSelector(selectProductById);
 
   const handleDelete = () => {
-    const product = {...selectedProduct};
+    const product = { ...selectedProduct };
     product.deleted = true;
-    dispatch(updateProductAsync(product))
-  }
+    dispatch(updateProductAsync(product));
+  };
 
   useEffect(() => {
     if (params.id) {
       dispatch(fetchAllProductByIdAsync(params.id));
-    }else{
+    } else {
       dispatch(clearSelectedproduct());
     }
   }, [params.id, dispatch]);
@@ -71,21 +69,21 @@ function ProductForm() {
           product.image3,
           product.thumbnail,
         ];
-        product.rating = 0; 
+        product.rating = 0;
         delete product["image1"];
         delete product["image2"];
         delete product["image3"];
         product.price = +product.price;
         product.stock = +product.stock;
         product.discountPercentage = +product.discountPercentage;
-          if(params.id){
+        if (params.id) {
           product.id = params.id;
           product.rating = selectedProduct.rating || 0;
-          dispatch(updateProductAsync(product))
-          reset()
-        }else{
+          dispatch(updateProductAsync(product));
+          reset();
+        } else {
           dispatch(createProductAsync(product));
-          reset()
+          reset();
         }
       })}
     >
@@ -96,6 +94,11 @@ function ProductForm() {
           </h2>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+            {selectedProduct && selectedProduct.deleted && (
+              <h2 className="text-red-500 sm:col-span-6">
+                This product is deleted
+              </h2>
+            )}
             <div className="sm:col-span-4">
               <label
                 htmlFor="username"
@@ -155,7 +158,9 @@ function ProductForm() {
                 >
                   <option value="">--choose brand--</option>
                   {brands.map((brand) => (
-                    <option value={brand.value}>{brand.label}</option>
+                    <option key={brand.value} value={brand.value}>
+                      {brand.label}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -176,7 +181,9 @@ function ProductForm() {
                 >
                   <option value="">--choose Category--</option>
                   {categories.map((category) => (
-                    <option value={category.value}>{category.label}</option>
+                    <option key={category.value} value={category.value}>
+                      {category.label}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -424,12 +431,14 @@ function ProductForm() {
         >
           Cancel
         </button>
-        {selectedProduct && <button
-          onClick={handleDelete}
-          className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >
-          Delete
-        </button>}
+        {selectedProduct && (
+          <button
+            onClick={handleDelete}
+            className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            Delete
+          </button>
+        )}
         <button
           type="submit"
           className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

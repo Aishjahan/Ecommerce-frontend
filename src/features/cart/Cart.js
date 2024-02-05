@@ -22,7 +22,7 @@ export default function Cart() {
   const [open, setOpen] = useState(true);
 
   const handleQuantity = (e, item) => {
-    dispatch(updateCartAsync({ id:item.id, quantity: +e.target.value }));
+    dispatch(updateCartAsync({ id: item.id, quantity: +e.target.value }));
   };
 
   const handleRemove = (e, id) => {
@@ -57,7 +57,9 @@ export default function Cart() {
                         </h3>
                         <p className="ml-4">${discountedPrice(item.product)}</p>
                       </div>
-                      <p className="mt-1 text-sm text-gray-500">{item.product.brand}</p>
+                      <p className="mt-1 text-sm text-gray-500">
+                        {item.product.brand}
+                      </p>
                     </div>
                     <div className="flex flex-1 items-end justify-between text-sm">
                       <div className="text-gray-500">

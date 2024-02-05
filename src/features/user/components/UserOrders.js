@@ -1,22 +1,29 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchLoggedInUserOrdersAsync, selectOrders, selectUserInfo } from "../userSlice";
+import {
+  fetchLoggedInUserOrdersAsync,
+  selectOrders,
+  selectUserInfo,
+} from "../userSlice";
 import { discountedPrice } from "../../../app/constants";
 
 export default function UserOrders() {
   const dispatch = useDispatch();
-  const user = useSelector(selectUserInfo);
+  const userInfo = useSelector(selectUserInfo);
   const orders = useSelector(selectOrders);
 
   useEffect(() => {
-    dispatch(fetchLoggedInUserOrdersAsync(user.id));
-  }, [dispatch, user]);
+    dispatch(fetchLoggedInUserOrdersAsync(userInfo.id));
+  }, [dispatch, userInfo]);
 
   return (
     <div>
       {orders.map((order) => (
         <div>
-          <div className="mx-auto mt-12 bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div
+            key={order.id}
+            className="mx-auto mt-12 bg-white max-w-7xl px-4 sm:px-6 lg:px-8"
+          >
             <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
               <h1 className="text-4xl my-5 font-bold tracking-tight text-gray-900">
                 Order # {order.id}
@@ -40,9 +47,13 @@ export default function UserOrders() {
                         <div>
                           <div className="flex justify-between text-base font-medium text-gray-900">
                             <h3>
-                              <a href={item.product.href}>{item.product.title}</a>
+                              <a href={item.product.href}>
+                                {item.product.title}
+                              </a>
                             </h3>
-                            <p className="ml-4">${discountedPrice(item.product)}</p>
+                            <p className="ml-4">
+                              ${discountedPrice(item.product)}
+                            </p>
                           </div>
                           <p className="mt-1 text-sm text-gray-500">
                             {item.product.brand}
@@ -74,14 +85,9 @@ export default function UserOrders() {
                 <p>Total Items in cart</p>
                 <p>{order.totalItems} items</p>
               </div>
-              <p className="mt-0.5 text-sm text-gray-500">
-                Shipping Address :
-              </p>
-              <div
-                className="flex justify-between gap-x-6 px-5 py-5 border-solid border-2 border-gray-200"
-              >
+              <p className="mt-0.5 text-sm text-gray-500">Shipping Address :</p>
+              <div className="flex justify-between gap-x-6 px-5 py-5 border-solid border-2 border-gray-200">
                 <div className="flex min-w-0 gap-x-4">
-                  
                   <div className="min-w-0 flex-auto">
                     <p className="text-sm font-semibold leading-6 text-gray-900">
                       {order.selectedAddress.name}

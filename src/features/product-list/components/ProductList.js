@@ -387,8 +387,6 @@ function DesktopFilter({ handleFilter, filters }) {
   );
 }
 
-
-
 function ProductGrid({ products }) {
   return (
     <>
@@ -435,7 +433,7 @@ function ProductGrid({ products }) {
                     <p className="text-sm text-red-600">product deleted</p>
                   </div>
                 )}
-                {product.stock<=0 && (
+                {product.stock <= 0 && (
                   <div>
                     <p className="text-sm text-red-600">Out of Stock</p>
                   </div>

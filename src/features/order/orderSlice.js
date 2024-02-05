@@ -1,11 +1,11 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { createOrder, fetchAllOrders, updateOrder } from './orderAPI';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createOrder, fetchAllOrders, updateOrder } from "./orderAPI";
 
 const initialState = {
   orders: [],
-  status: 'idle',
-  currentOrder : null,
-  totalOrders : 0,
+  status: "idle",
+  currentOrder: null,
+  totalOrders: 0,
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -14,7 +14,7 @@ const initialState = {
 // code can then be executed and other actions can be dispatched. Thunks are
 // typically used to make async requests.
 export const createOrderAsync = createAsyncThunk(
-  'order/createOrder',
+  "order/createOrder",
   async (order) => {
     const response = await createOrder(order);
     // The value we return becomes the `fulfilled` action payload
@@ -23,7 +23,7 @@ export const createOrderAsync = createAsyncThunk(
 );
 
 export const updateOrderAsync = createAsyncThunk(
-  'order/updateOrder',
+  "order/updateOrder",
   async (order) => {
     const response = await updateOrder(order);
     // The value we return becomes the `fulfilled` action payload
@@ -32,21 +32,21 @@ export const updateOrderAsync = createAsyncThunk(
 );
 
 export const fetchAllOrdersAsync = createAsyncThunk(
-  'order/fetchAllOrders',
-  async ({sort ,pagination}) => {
-    const response = await fetchAllOrders({sort,pagination});
+  "order/fetchAllOrders",
+  async ({ sort, pagination }) => {
+    const response = await fetchAllOrders({ sort, pagination });
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
 
 export const orderSlice = createSlice({
-  name: 'order',
+  name: "order",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     resetOrder: (state) => {
-      state.currentOrder=null;
+      state.currentOrder = null;
     },
   },
   // The `extraReducers` field lets the slice handle actions defined elsewhere,
@@ -54,27 +54,29 @@ export const orderSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(createOrderAsync.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(createOrderAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
+        state.status = "idle";
         state.orders.push(action.payload);
         state.currentOrder = action.payload;
       })
       .addCase(fetchAllOrdersAsync.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(fetchAllOrdersAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
+        state.status = "idle";
         state.orders = action.payload.orders;
         state.totalOrders = action.payload.totalOrders;
       })
       .addCase(updateOrderAsync.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(updateOrderAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
-        const index = state.orders.findIndex(order=>order.id===action.payload.id)
+        state.status = "idle";
+        const index = state.orders.findIndex(
+          (order) => order.id === action.payload.id
+        );
         state.orders[index] = action.payload;
       });
   },
