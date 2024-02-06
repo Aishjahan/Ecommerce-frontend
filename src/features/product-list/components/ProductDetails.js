@@ -53,6 +53,7 @@ export default function ProductDetails() {
       };
       dispatch(addToCartAsync(newItem));
     }
+    
     console.log("already added");
   };
 
