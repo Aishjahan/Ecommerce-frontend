@@ -13,12 +13,12 @@ export default function UserOrders() {
   const orders = useSelector(selectOrders);
 
   useEffect(() => {
-    dispatch(fetchLoggedInUserOrdersAsync(userInfo.id));
-  }, [dispatch, userInfo]);
+    dispatch(fetchLoggedInUserOrdersAsync());
+  }, [dispatch]);
 
   return (
     <div>
-      {orders.map((order) => (
+      { orders && orders.map((order) => (
         <div>
           <div
             key={order.id}

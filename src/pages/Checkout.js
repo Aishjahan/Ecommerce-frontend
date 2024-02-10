@@ -31,7 +31,8 @@ function Checkout() {
     (amount, item) => discountedPrice(item.product) * item.quantity + amount,
     0
   );
-  const totalItems = items.reduce((total, item) => item.quantity + total, 0);
+  //const totalItems = items.reduce((total, item) => item.quantity + total, 0);
+  const totalItems = items.reduce((total, arrayItem) => total + Number(arrayItem.quantity), 0);
   const [open, setOpen] = useState(true);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState("cash");
